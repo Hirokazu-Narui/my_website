@@ -1,0 +1,257 @@
+/* Zen serif fonts (no build required) */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600&family=EB+Garamond:wght@400;500;600&display=swap');
+
+:root{
+  --bg:#ffffff; /* changed to white background */
+  --fg:#0b0b0b; /* primary text color (near-black) */
+  --muted:rgba(11,11,11,0.56); /* subdued dark gray */
+  --line:rgba(16,16,16,0.06); /* subtle divider */
+  --card:rgba(250,250,250,1); /* card background (slightly off-white) */
+  --accent:rgba(0,0,0,0.08); /* for subtle accents */
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+:body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  letter-spacing:.02em;
+  font-family: "EB Garamond","Noto Serif JP", ui-serif, Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 400;
+}
+
+/* subtle sumi-e (ink) texture overlay */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-repeat:no-repeat;
+  opacity:0.06;
+  mix-blend-mode:multiply;
+}
+
+/* Dark theme overrides (apply by adding class `dark` to body) */
+html.dark, body.dark{
+  --bg:#0b0b0b;
+  --fg:#f7f7f7;
+  --muted:rgba(247,247,247,0.62);
+  --line:rgba(255,255,255,0.06);
+  --card:rgba(11,11,11,0.12);
+}
+
+html.dark body::before, body.dark::before{
+  /* invert ink to white on dark background so textures remain visible */
+  filter: invert(1) brightness(1.8) saturate(0.5);
+  opacity:0.16;
+  mix-blend-mode:screen;
+}
+
+/* stronger enforcement: ensure backgrounds and text switch */
+html, body{
+  background:var(--bg);
+  color:var(--fg);
+}
+body.dark, body.dark *{
+  background-color:transparent; /* let components use vars */
+  color:inherit;
+}
+body.dark{background:var(--bg) !important; color:var(--fg) !important}
+
+/* per-page sumi-e textures: set body[data-ink] on each page */
+body[data-ink="home"]::before{
+  background-image:url('../assets/ink-texture.svg');
+  background-position: right top;
+  background-size: 60% auto;
+}
+body[data-ink="blog"]::before{
+  background-image:url('../assets/ink-blog.svg');
+  background-position: left top;
+  background-size: 70% auto;
+  opacity:0.07;
+}
+body[data-ink="photos"]::before{
+  background-image:url('../assets/ink-photos.svg');
+  background-position: right bottom;
+  background-size: 65% auto;
+  opacity:0.06;
+}
+body[data-ink="stamps"]::before{
+  background-image:url('../assets/ink-stamps.svg');
+  background-position: left bottom;
+  background-size: 60% auto;
+  opacity:0.06;
+}
+
+a{color:inherit;text-decoration:none}
+a:hover{opacity:.78}
+
+.wrap{
+  max-width:980px;
+  margin:0 auto;
+  padding:64px 22px;
+}
+
+.nav{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:30;
+  backdrop-filter: blur(4px);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.92), rgba(255,255,255,0.84));
+  padding:10px 0;
+}
+
+/* dark nav background */
+body.dark .nav{
+  background: linear-gradient(to bottom, rgba(11,11,11,0.92), rgba(11,11,11,0.84));
+}
+.nav .brand{
+  font-size:12px;
+  color:var(--muted);
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.nav .links{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.nav .links button{cursor:pointer}
+
+/* theme toggle button small style */
+#themeToggle{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  padding:8px 10px;
+}
+
+/* dark mode specific elements */
+body.dark .nav .links a{color:rgba(247,247,247,0.9)}
+body.dark .mini, body.dark .sub, body.dark .item-meta, body.dark .item-excerpt{color:rgba(247,247,247,0.7)}
+body.dark .card{background:var(--card);border-color:var(--line);box-shadow:none}
+body.dark .article{background:var(--card);border-color:var(--line)}
+body.dark .article code{background:rgba(255,255,255,0.06)}
+body.dark .article pre{background:rgba(255,255,255,0.04)}
+body.dark .profile-img{filter:grayscale(40%) contrast(1.05)}
+.nav .links a{font-size:14px; color:rgba(11,11,11,0.9);}
+
+.hr{height:1px;background:var(--line);margin:28px 0}
+
+/* Hero */
+.hero{padding:14px 0 8px 0}
+.name-ja{
+  font-size:44px;
+  letter-spacing:.06em;
+  font-weight: 500;
+  line-height:1.1;
+}
+.name-en{
+  margin-top:10px;
+  font-size:18px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:rgba(11,11,11,0.6);
+}
+.sub{
+  margin-top:14px;
+  color:var(--muted);
+  line-height:1.95;
+  font-size:14px;
+}
+
+.hero-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+
+.btn{
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:10px 14px;
+  background:transparent;
+  font-size:14px;
+}
+.btn.ghost{
+  background:transparent;
+}
+.btn:hover{opacity:.86}
+
+/* Page titles */
+.h1{font-size:34px;line-height:1.2;font-weight:600}
+.kicker{
+  font-size:12px;
+  color:var(--muted);
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+
+.grid{
+  display:grid;
+  gap:20px;
+  grid-template-columns:1fr;
+}
+@media (min-width:860px){
+  .grid{grid-template-columns:1fr 1fr}
+}
+
+.card{
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:22px;
+  background:var(--card);
+  box-shadow: 0 6px 18px rgba(11,11,11,0.03);
+}
+
+.mini{
+  margin-top:14px;
+  color:rgba(11,11,11,0.65);
+  font-size:13px;
+  line-height:1.95;
+}
+
+/* List / Article */
+.list{display:grid;gap:12px;margin-top:12px}
+.item{padding:14px 0;border-top:1px solid var(--line)}
+.item:first-child{border-top:none}
+.item-title{font-size:18px;font-weight:600;margin:6px 0}
+.item-meta{font-size:12px;color:var(--muted);letter-spacing:.06em}
+.item-excerpt{margin:10px 0;color:var(--muted);line-height:1.9;font-size:14px}
+
+.article{
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:22px;
+  background:var(--card);
+  line-height:2.0;
+}
+.article h1,.article h2,.article h3{
+  line-height:1.35;
+  letter-spacing:.03em;
+}
+.article p{margin:14px 0}
+.article code{background:rgba(11,11,11,0.04);padding:2px 6px;border-radius:10px}
+.article pre{background:rgba(11,11,11,0.04);padding:14px;border-radius:14px;overflow:auto}
+
+.link{
+  border-bottom:1px solid rgba(11,11,11,0.08);
+  padding-bottom:2px;
+}
+.profile-img{
+  width:140px;
+  height:140px;
+  object-fit:cover;
+  border-radius:50%;
+  border:1px solid var(--line);
+  margin-bottom:22px;
+  filter: contrast(1.02);
+}

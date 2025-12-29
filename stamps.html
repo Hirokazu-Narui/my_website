@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stamps | 成井公一 / Hirokazu Narui</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body data-ink="stamps">
+  <div class="wrap">
+    <div class="nav">
+      <div class="brand">ZEN ART / Minimal Space</div>
+      <div class="links">
+        <a href="./">Main</a>
+        <a href="./blog.html">Blog</a>
+        <a href="./stamps.html">Stamps</a>
+        <a href="./photos.html">Photos</a>
+        <button id="themeToggle" class="btn" aria-label="テーマ切替"></button>
+      </div>
+    </div>
+    <div class="hr"></div>
+
+    <div class="h1">Stamps</div>
+    <div class="sub">スタンプ紹介（Markdownで管理）。</div>
+
+    <div class="hr"></div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="kicker">List</div>
+        <div id="list" class="list"></div>
+      </div>
+
+      <div class="card">
+        <div class="kicker">Reading</div>
+        <div id="readingMeta" class="item-meta">左の一覧から選択</div>
+        <div class="hr"></div>
+        <div id="article" class="article">...</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    window.ZEN.renderSection({
+      section: "stamps",
+      listEl: document.getElementById("list"),
+      articleEl: document.getElementById("article"),
+      metaEl: document.getElementById("readingMeta"),
+    });
+  </script>
+  <script src="js/theme.js"></script>
+</body>
+</html>
