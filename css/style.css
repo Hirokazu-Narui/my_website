@@ -74,13 +74,13 @@ body[data-ink="blog"]::before{
 body[data-ink="photos"]::before{
   background-image:url('../assets/ink-photos.svg');
   background-position: right bottom;
-  background-size: 65% auto;
+  background-size: 30% auto;
   opacity:0.06;
 }
 body[data-ink="stamps"]::before{
   background-image:url('../assets/ink-stamps.svg');
   background-position: left bottom;
-  background-size: 60% auto;
+  background-size: 28% auto;
   opacity:0.06;
 }
 
@@ -142,6 +142,12 @@ body.dark .article code{background:rgba(255,255,255,0.06)}
 body.dark .article pre{background:rgba(255,255,255,0.04)}
 body.dark .profile-img{filter:grayscale(40%) contrast(1.05)}
 .nav .links a{font-size:14px; color:rgba(11,11,11,0.9);}
+
+/* Social icons in contact card */
+.social-icons{display:flex;gap:12px;align-items:center}
+.social-icons a{color:var(--fg);display:inline-flex;align-items:center;justify-content:center;padding:6px;border-radius:8px}
+.social-icons a svg{width:22px;height:22px;display:block}
+.social-icons a:hover{opacity:0.86}
 
 .hr{height:1px;background:var(--line);margin:28px 0}
 
