@@ -244,6 +244,20 @@ body.dark .profile-img{filter:grayscale(40%) contrast(1.05)}
   line-height:1.35;
   letter-spacing:.03em;
 }
+.article h1, .article h2, .article h3 {
+  background: transparent; /* remove any framed background */
+  border: none; /* ensure no border around headings */
+  padding: 0; /* remove extra padding that looks like a frame */
+}
+
+/* Remove borders around images inside the article (override inline styles) */
+.article img{
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  display: block;
+  margin: 0; /* collapse extra spacing that may look framed */
+}
 .article p{margin:14px 0}
 .article code{background:rgba(11,11,11,0.04);padding:2px 6px;border-radius:10px}
 .article pre{background:rgba(11,11,11,0.04);padding:14px;border-radius:14px;overflow:auto}
@@ -261,3 +275,60 @@ body.dark .profile-img{filter:grayscale(40%) contrast(1.05)}
   margin-bottom:22px;
   filter: contrast(1.02);
 }
+
+/* Remove framed card appearance for article content while keeping dividers */
+.article{
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Ensure dark mode doesn't reapply the card visuals */
+body.dark .article{
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* stamps ページ専用: 記事内リンクを強調 (下線＋太字) */
+body[data-ink="stamps"] .article a{
+  text-decoration: underline;
+  text-decoration-thickness: 1.6px;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(11,11,11,0.9);
+  font-weight: 600;
+}
+body[data-ink="stamps"] .article a:hover{
+  opacity: 0.88;
+}
+
+/* Photos page: Floating Mount (掛け軸的マウント) */
+body[data-ink="photos"] .article img{
+  border-radius:6px;
+  background: transparent !important; /* remove white mat */
+  padding: 0 !important; /* remove inner white margin */
+  /* no visible border */
+  border: none !important;
+  /* refined layered shadow for stronger floating effect */
+  box-shadow:
+    0 12px 24px rgba(11,11,11,0.06),
+    0 32px 64px rgba(11,11,11,0.09),
+    0 2px 6px rgba(11,11,11,0.03) inset;
+  display:block;
+  margin:20px auto;
+  transition: transform .18s ease, box-shadow .18s ease, opacity .12s ease;
+}
+/* preserve hover motion/feel from previous design */
+body[data-ink="photos"] .article img:hover{
+  transform: translateY(-6px) rotate(-0.5deg);
+  box-shadow:
+    0 20px 28px rgba(0,0,0,0.06),
+    0 44px 80px rgba(2,2,2,0.10);
+}
+
+/* 補足: 枠を付ける場合の例 */
+/*
+  - 目立たせたい場合は上の `border` を以下のように変更します。
+    border: 1px solid rgba(200,170,100,0.18) ;
+  - より掛け軸風にするなら金色寄りの細線を使い、マット色をやや暖かめにすると良いです。
+*/

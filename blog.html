@@ -24,7 +24,8 @@
     <div class="hr"></div>
 
     <div class="h1">Blog</div>
-    <div class="sub">Markdownを追加するだけで増えていきます。</div>
+    <div class="sub">日々の出来事の記録</div>
+
 
     <div class="hr"></div>
 
@@ -35,15 +36,14 @@
       </div>
 
       <div class="card">
-        <div class="kicker">Reading</div>
-        <div id="readingMeta" class="item-meta">左の一覧から選択</div>
+        <div class="kicker">Detail</div>
+          <div id="detailMeta" class="item-meta">左の一覧から選択</div>
         <div class="hr"></div>
         <div id="article" class="article">...</div>
       </div>
     </div>
 
     <div class="hr"></div>
-    <div class="sub">更新：content/blog に .md を追加 → push。</div>
   </div>
 
   <script src="js/main.js"></script>
@@ -52,7 +52,7 @@
       section: "blog",
       listEl: document.getElementById("list"),
       articleEl: document.getElementById("article"),
-      metaEl: document.getElementById("readingMeta"),
+      metaEl: document.getElementById("detailMeta"),
     });
   </script>
   <script src="js/theme.js"></script>

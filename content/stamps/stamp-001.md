@@ -1,9 +1,5 @@
-# LINEスタンプ #001
-
-制作メモ。  
-- コンセプト：ゆるい毒舌
-- 配色：白黒ベース
+# ペキニーズ
 
 ![preview](../../assets/stamps/stamp-001.png)
 
-[LINE STORE（リンクをここに）](https://example.com)
+[LINE STORE](https://store.line.me/stickershop/product/32126351/ja)
