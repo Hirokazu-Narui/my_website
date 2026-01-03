@@ -1,5 +1,19 @@
 // 超軽量Markdown変換（最小）
 // ※本格的にやるなら marked.js 等を導入してもOK（学習目的ならまずこれで十分）
+
+// BASE URLを動的に検出（ローカルと GitHub Pages両対応）
+function detectBaseUrl() {
+  const href = window.location.href;
+  // /my_website/ が含まれていたら GitHub Pages
+  if (href.includes("/my_website/")) {
+    return "/my_website/";
+  }
+  // localhost or file:// はローカル
+  return "./";
+}
+
+const BASE_URL = detectBaseUrl();
+
 function mdToHtml(md) {
   // エスケープ（最低限）
   const esc = (s) => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
@@ -17,9 +31,9 @@ function mdToHtml(md) {
 
   // images ![alt](url)
   md = md.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, src) => {
-    // Convert relative paths (../../assets/...) to root-relative paths (/assets/...)
+    // Convert relative paths (../../assets/...) preserving them but with BASE_URL
     if (src.includes("../../assets/")) {
-      src = src.replace(/^.*?\/assets\//, "/assets/");
+      src = BASE_URL + "assets/" + src.split("/assets/")[1];
     }
     return `<p><img alt="${alt}" src="${src}" style="max-width:100%;border-radius:14px;border:1px solid var(--line);" /></p>`;
   });
