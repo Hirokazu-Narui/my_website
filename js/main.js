@@ -16,7 +16,13 @@ function mdToHtml(md) {
   md = md.replace(/^# (.*)$/gm, "<h1>$1</h1>");
 
   // images ![alt](url)
-  md = md.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, `<p><img alt="$1" src="$2" style="max-width:100%;border-radius:14px;border:1px solid var(--line);" /></p>`);
+  md = md.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, src) => {
+    // Convert relative paths (../../assets/...) to root-relative paths (/assets/...)
+    if (src.includes("../../assets/")) {
+      src = src.replace(/^.*?\/assets\//, "/assets/");
+    }
+    return `<p><img alt="${alt}" src="${src}" style="max-width:100%;border-radius:14px;border:1px solid var(--line);" /></p>`;
+  });
 
   // links [text](url)
   md = md.replace(/\[([^\]]+)\]\(([^)]+)\)/g, `<a href="$2" target="_blank" rel="noreferrer">$1</a>`);
